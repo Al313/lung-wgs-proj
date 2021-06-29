@@ -19,21 +19,20 @@ if (dir.exists("/hpc/cuppen/")){
 
 
 
-
-
 if (dir.exists("/hpc/cuppen/")){
-  hmf_lung_meta <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort.tsv", header = T,
+  hmf_lung_meta <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort-final.tsv", header = T,
                        sep = "\t", stringsAsFactors = F)
 } else {
-  hmf_lung_meta <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort.tsv", header = T,
+  hmf_lung_meta <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort-final.tsv", header = T,
                       sep = "\t", stringsAsFactors = F)
 }
 
 hmf_lung_meta_NSC <- hmf_lung_meta[hmf_lung_meta$cancer_type == "Non-Small Cell",]
 
-# @0: Getting all hmf lung vcf files in one list
 
-
+# # @0: Getting all hmf lung vcf files in one list
+# 
+# 
 # 
 # hmf_lung_somatic_vcfs <- list()
 # 
@@ -142,9 +141,9 @@ if (dir.exists("/hpc/cuppen/")){
 
 
 
-# @1:  count matrix for somatic SNVs, MNVs, and indels of hmf lung cohort
-
-
+# # @1:  count matrix for somatic SNVs, MNVs, and indels of hmf lung cohort
+# 
+# 
 # count_matrix_hmf <- matrix(nrow = length(hmf_lung_somatic_vcfs), ncol = 5)
 # 
 # colnames(count_matrix_hmf) <- c("all", "SNVs", "MNVs", "inDEL", "INdel")
@@ -189,8 +188,8 @@ count_df_hmf_NSC <- count_df_hmf[count_df_hmf$sampleId %in% hmf_lung_meta_NSC$sa
 
 
 
-# @2: count matrix for simple structural variants such as deletions, duplications, translocations, and inversions of hmf lung cohort
-
+# # @2: count matrix for simple structural variants such as deletions, duplications, translocations, and inversions of hmf lung cohort
+# 
 # simple_sv_events <- c("Deletion (> 100kb)", "Deletion (< 100kb)", "Duplication (> 100kb)", "Duplication (< 100kb)", "Inversion")
 # sv_count_matrix_hmf <- matrix(nrow = nrow(hmf_lung_meta), ncol = length(simple_sv_events))
 # colnames(sv_count_matrix_hmf) <- simple_sv_events
@@ -259,8 +258,8 @@ sv_count_matrix_hmf_NSC <- sv_count_matrix_hmf[rownames(sv_count_matrix_hmf) %in
 
 
 
-# @2.1: length matrix for simple structural variants such as deletions, duplications, and inversions of hmf lung cohort
-
+# # @2.1: length matrix for simple structural variants such as deletions, duplications, and inversions of hmf lung cohort
+# 
 # sv_length_df_hmf <- data.frame()
 # sv_length_dfs_hmf <- data.frame()
 # 
@@ -272,7 +271,7 @@ sv_count_matrix_hmf_NSC <- sv_count_matrix_hmf[rownames(sv_count_matrix_hmf) %in
 #   print(hmf_lung_meta$sampleId[i])
 #   sample_id <- hmf_lung_meta$sampleId[i]
 #   set_name <- hmf_lung_meta$setName[i]
-#   
+# 
 #   if (dir.exists("/hpc/cuppen/")){
 #     vcf <- read.csv(file = paste0("/hpc/cuppen/shared_resources/HMF_data/DR-104-update3/somatics/",
 #                                   set_name, "/linx14/", sample_id, ".linx.vis_sv_data.tsv"), header = T, sep = "\t", stringsAsFactors = F)
@@ -280,9 +279,9 @@ sv_count_matrix_hmf_NSC <- sv_count_matrix_hmf[rownames(sv_count_matrix_hmf) %in
 #     vcf <- read.csv(file = paste0("/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/shared_resources/HMF_data/DR-104-update3/somatics/",
 #                                   set_name, "/linx14/", sample_id, ".linx.vis_sv_data.tsv"), header = T, sep = "\t", stringsAsFactors = F)
 #   }
-#   
+# 
 #   vcf <- mutate(vcf, length = abs(PosEnd - PosStart))
-#   
+# 
 #   sv_length_df_hmf <- vcf[vcf$ResolvedType %in% c("DEL", "DUP", "INV"), c("SampleId", "ResolvedType", "length")]
 #   rownames(sv_length_df_hmf) <- (nrow(sv_length_dfs_hmf) +1 ):(nrow(sv_length_dfs_hmf) + nrow(sv_length_df_hmf))
 #   sv_length_dfs_hmf <- rbind(sv_length_dfs_hmf, sv_length_df_hmf)
@@ -306,23 +305,22 @@ if (dir.exists("/hpc/cuppen/")){
 
 
 
-
 #========================================================================================================================================================
 
-# @3: clonality of mutations
-
+# # @3: clonality of mutations
+# 
 # clonality_summary_hmf <- data.frame(sampleId = NA, Mut_type = NA, Clonal = NA, Non_clonal = NA, Unknown = NA)
 # 
 # 
 # for (i in 1:length(hmf_lung_somatic_vcfs)){
-#   
+# 
 #   print(i)
 #   j <- (i-1) * 5 + 1
-#   
+# 
 #   clonality_summary_hmf[j:(j+4),1] <- names(hmf_lung_somatic_vcfs)[i]
 #   clonality_summary_hmf[j:(j+4),2] <- c("All", "SNVs", "MNVs", "Ins", "Del")
 #   for (type in c("SNVs", "MNVs", "Ins", "Del", "All")) {
-#     
+# 
 #     if (type == "All") {
 #       tmp_df <- hmf_lung_somatic_vcfs[[i]]
 #       clonality_summary_hmf[j,3] <- as.vector(table(tmp_df[,"CLONALITY"],  useNA="always")["TRUE"])
@@ -348,7 +346,7 @@ if (dir.exists("/hpc/cuppen/")){
 #       clonality_summary_hmf[j+4,3] <- as.vector(table(tmp_df[nchar(tmp_df$REF) > nchar(tmp_df$ALT) & nchar(tmp_df$REF) ,"CLONALITY"],  useNA="always")["TRUE"])
 #       clonality_summary_hmf[j+4,4] <- as.vector(table(tmp_df[nchar(tmp_df$REF) > nchar(tmp_df$ALT) & nchar(tmp_df$REF) ,"CLONALITY"],  useNA="always")["FALSE"])
 #       clonality_summary_hmf[j+4,5] <- as.vector(tail(table(tmp_df[nchar(tmp_df$REF) > nchar(tmp_df$ALT) & nchar(tmp_df$REF) ,"CLONALITY"],  useNA="always"),1))
-#     } 
+#     }
 #   }
 # }
 # 
@@ -368,13 +366,13 @@ if (dir.exists("/hpc/cuppen/")){
   clonality_summary_hmf <- readRDS(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/clonality_summary_hmf.rds")
 }
 
-
 clonality_summary_hmf_NSC <- clonality_summary_hmf[clonality_summary_hmf$sampleId %in% hmf_lung_meta_NSC$sampleId,]
+
 
 #========================================================================================================================================================
 
-# @4: ploidy info of samples
-
+# # @4: ploidy info of samples
+# 
 # 
 # hmf_ploidy_info <- list()
 # 
@@ -407,7 +405,6 @@ clonality_summary_hmf_NSC <- clonality_summary_hmf[clonality_summary_hmf$sampleI
 
 
 
-
 if (dir.exists("/hpc/cuppen/")){
   hmf_ploidy_info <- readRDS(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/hmf-ploidy-info.rds")
 } else {
@@ -423,43 +420,45 @@ hmf_ploidy_df <- hmf_ploidy_df[,c(25, 1:24)]
 
 for (i in c(2:6, 9:17, 19, 23, 25)) {
   hmf_ploidy_df[,i] <- as.numeric(hmf_ploidy_df[,i])
-  
+
 }
 
 for (i in c(21, 25)) {
   hmf_ploidy_df[,i] <- as.integer(hmf_ploidy_df[,i])
-  
+
 }
 
 hmf_ploidy_df_NSC <- hmf_ploidy_df[hmf_ploidy_df$sampleId %in% hmf_lung_meta_NSC$sampleId,]
+
+
 #========================================================================================================================================================
 
 
 # clustering
 
-head(count_df_hmf)
+head(count_df_hmf_NSC)
 
-count_df_hmf_norm <- count_df_hmf[,2:5]#/count_df_hmf[,6]
-rownames(count_df_hmf_norm) <- count_df_hmf$sampleId
-count_df_hmf_norm <- t(count_df_hmf_norm)
-
-
-sv_count_df_hmf <- as.data.frame(sv_count_matrix_hmf)
-
-sv_count_df_hmf_norm <- sv_count_df_hmf[,1:5]#/rowSums(sv_count_df_hmf[,1:5])
-rownames(sv_count_df_hmf_norm) <- sv_count_df_hmf$sampleId
-sv_count_df_hmf_norm <- t(sv_count_df_hmf_norm)
+count_df_hmf_NSC_norm <- count_df_hmf_NSC[,2:5]#/count_df_hmf_NSC[,6]
+rownames(count_df_hmf_NSC_norm) <- count_df_hmf_NSC$sampleId
+count_df_hmf_NSC_norm <- t(count_df_hmf_NSC_norm)
 
 
-mut_count_combined <- rbind(count_df_hmf_norm, sv_count_df_hmf_norm)
+sv_count_df_hmf_NSC <- as.data.frame(sv_count_matrix_hmf_NSC)
+
+sv_count_df_hmf_NSC_norm <- sv_count_df_hmf_NSC[,1:5]#/rowSums(sv_count_df_hmf_NSC[,1:5])
+rownames(sv_count_df_hmf_NSC_norm) <- rownames(sv_count_df_hmf_NSC)
+sv_count_df_hmf_NSC_norm <- t(sv_count_df_hmf_NSC_norm)
+
+ncol(sv_count_df_hmf_NSC_norm)
+mut_count_combined <- rbind(count_df_hmf_NSC_norm, sv_count_df_hmf_NSC_norm)
 hc.sample.combined <- hclust(dist(t(mut_count_combined)), method = "complete")
-sample_order_comb <- colnames(count_df_hmf_norm)[hc.sample.combined$order]
+sample_order_comb <- colnames(count_df_hmf_NSC_norm)[hc.sample.combined$order]
 
 
 
 # Mutation distribution per sample
 
-count_tibb_hmf <- count_df_hmf %>%
+count_tibb_hmf <- count_df_hmf_NSC %>%
   gather(key = "Mut_type", value = "Count", 2:5)
 
 count_tibb_hmf %<>% select(-all)
@@ -472,22 +471,22 @@ cols <- brewer.pal(8, name = "Dark2")
 tmb_plot <- count_tibb_hmf %>% ggplot(aes(x = sampleId, y = Count, fill = Mut_type, color = Mut_type)) +
   geom_bar(position="stack", stat="identity", width = 1, size = 0.1) +
   scale_fill_manual(values = cols[c(1,2,7,8)], labels = c("SNVs", "MNVs", "Small Insertions", "Small Deletions")) +
-  scale_color_manual(values = rep('black', times =5), guide=F) +
+  scale_color_manual(values = rep('black', times =5), guide = "none") +
   theme_bw() +
   theme(
     panel.grid.minor.x = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.minor.y = element_blank(),
-    panel.grid.major.y = element_blank()
+    panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed")
   ) +
   theme(axis.ticks.x = element_blank()) +
   theme(axis.text.x = element_blank()) +
   theme(plot.margin = unit(c(1,1,1,1), "cm")) +
   scale_y_continuous(name = "Counts \n",
-                     breaks = c(0, 25000, 50000, 75000, 100000, 125000, 150000),
-                     labels = c(0, "25,000", "50,000", "75,000", "100,000", "125,000", "150,000")) +
+                     breaks = c(0, 25000, 50000, 75000, 100000, 150000, 200000, 250000, 300000, 350000, 400000),
+                     labels = c(0, "25,000", "50,000", "75,000", "100,000", "150,000", "200000", "250000", "300000", "350000", "400000")) +
   labs(x = NULL, y = "Counts", fill = "Mutation Type") +
-  ggtitle("Absolute Mutation Counts in hmf Lung Samples \n \n") +
+  ggtitle("Absolute Mutation Counts\n \n") +
   theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.35))
 # scale_fill_discrete(labels = c("SNVs", "MNVs", "Small Insertions", "Small Deletions"))
 
@@ -497,10 +496,10 @@ tmb_plot <- count_tibb_hmf %>% ggplot(aes(x = sampleId, y = Count, fill = Mut_ty
 
 # SV event distributions per sample
 
-sv_count_df_hmf %<>% mutate(sampleId = rownames(sv_count_df_hmf))
-rownames(sv_count_df_hmf) <- 1:nrow(sv_count_df_hmf)
+sv_count_df_hmf_NSC %<>% mutate(sampleId = rownames(sv_count_df_hmf_NSC))
+rownames(sv_count_df_hmf_NSC) <- 1:nrow(sv_count_df_hmf_NSC)
 
-sv_count_tibb_hmf <- sv_count_df_hmf %>% gather(key = "Mut_type", value = "Count", 1:5)
+sv_count_tibb_hmf <- sv_count_df_hmf_NSC %>% gather(key = "Mut_type", value = "Count", 1:5)
 sv_count_tibb_hmf$Mut_type <- factor(sv_count_tibb_hmf$Mut_type, levels = c("Deletion (< 100kb)", "Deletion (> 100kb)", "Duplication (< 100kb)", "Duplication (> 100kb)", "Inversion"))
 
 sv_count_tibb_hmf$sampleId <- factor(sv_count_tibb_hmf$sampleId, levels = sample_order_comb)
@@ -509,17 +508,17 @@ sv_count_tibb_hmf$sampleId <- factor(sv_count_tibb_hmf$sampleId, levels = sample
 sv_plot <- sv_count_tibb_hmf %>% ggplot(aes(x = sampleId, y = Count, fill = Mut_type, color = Mut_type)) +
   geom_bar(position="stack", stat="identity", width = 1, size = 0.1) +
   scale_fill_manual(values = brewer.pal(5, "Accent")) +
-  scale_color_manual(values = rep('black', times =5), guide=F) +
+  scale_color_manual(values = rep('black', times =5), guide = "none") +
   theme_bw() +
   theme(
     panel.grid.minor.x = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.minor.y = element_blank(),
-    panel.grid.major.y = element_blank()
+    panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed")
   ) +
   theme(axis.ticks.x = element_blank()) +
   theme(axis.text.x = element_blank()) +
-  labs(x = "hmf Lung Samples", y = "Counts", fill = "SV Type")
+  labs(x = "HMF NSCLC Samples (n = 316)", y = "Counts", fill = "SV Type")
 
 
 # Combine
@@ -538,12 +537,12 @@ hmf_mut_dist <- cowplot::plot_grid(tmb_plot_grob, sv_plot_grob, align = "v", rel
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/mut-count-per-sample.png", width = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/mut-count-per-sample-final.png", width = 960)
     print(hmf_mut_dist)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/mut-count-per-sample.pdf", width = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/mut-count-per-sample-final.pdf", width = 14)
     print(hmf_mut_dist)
     dev.off()
   }
@@ -580,24 +579,24 @@ table(sv_length_dfs_hmf$ResolvedType)
 
 # head(clonality_summary_hmf)
 
-clonality_summary_hmf$Tot <- rowSums(clonality_summary_hmf[,3:5], na.rm = T)
-clonality_summary_hmf %<>% gather(key = "Clonality_stat", value = "Counts", 3:5)
-clonality_summary_hmf$Mut_type <- factor(clonality_summary_hmf$Mut_type, levels = c("All", "SNVs", "MNVs", "Ins", "Del"))
-clonality_summary_hmf$Clonality_stat <- factor(clonality_summary_hmf$Clonality_stat, levels = c("Clonal", "Non_clonal", "Unknown"))
+clonality_summary_hmf_NSC$Tot <- rowSums(clonality_summary_hmf_NSC[,3:5], na.rm = T)
+clonality_summary_hmf_NSC %<>% gather(key = "Clonality_stat", value = "Counts", 3:5)
+clonality_summary_hmf_NSC$Mut_type <- factor(clonality_summary_hmf_NSC$Mut_type, levels = c("All", "SNVs", "MNVs", "Ins", "Del"))
+clonality_summary_hmf_NSC$Clonality_stat <- factor(clonality_summary_hmf_NSC$Clonality_stat, levels = c("Clonal", "Non_clonal", "Unknown"))
 
 
 options(scipen=999)
 
 
 
-clonality_plot_summary_hmf <- clonality_summary_hmf %>% ggplot(aes(x = sampleId, y = Counts, fill = Clonality_stat)) + facet_grid(Mut_type ~ ., scales = 'free') +
+clonality_plot_summary_hmf <- clonality_summary_hmf_NSC %>% ggplot(aes(x = sampleId, y = Counts, fill = Clonality_stat)) + facet_grid(Mut_type ~ ., scales = 'free') +
   geom_bar(position="stack", stat="identity", width = 1) +
   scale_fill_manual(values = c("red", "black", "yellow")) +
   ggtitle("Clonality States of Different Mutation Types \n") +
-  labs(x = "hmf Lung Samples", y = "Frequency", fill = "Clonality") +
+  labs(x = "HMF NSCLC Samples (n = 316)", y = "Frequency", fill = "Clonality") +
   theme_bw() +
   theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) +
-  theme(axis.ticks.x = element_blank()) + theme(axis.text.x = element_blank())
+  theme(axis.ticks.x = element_blank()) + theme(axis.text.x = element_blank()) + theme(panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed"))
 
 
 
@@ -606,12 +605,12 @@ clonality_plot_summary_hmf <- clonality_summary_hmf %>% ggplot(aes(x = sampleId,
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/clonality_plot_summary_hmf.png", width = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/clonality-plot-summary-hmf-final.png", width = 960)
     print(clonality_plot_summary_hmf)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/clonality_plot_summary_hmf.pdf", width = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/clonality-plot-summary-hmf-final.pdf", width = 14)
     print(clonality_plot_summary_hmf)
     dev.off()
   }

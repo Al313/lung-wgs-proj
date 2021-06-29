@@ -20,34 +20,34 @@ local <- "/home/ali313/Documents/studies/master/umc-project"
 
 
 
-# # Reading in the sbs profiles
-# 
-# if (dir.exists("/hpc/cuppen/")){
-#   
-#   sbs_sig_profile_lung <- readRDS(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/mut-sig-ref/sbs/sbs-sig-profiles.rds")
-#   dbs_sig_profile_lung <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/datasets/processed/HMF_PCAWG/sigs_denovo/02_mergedCancerTypes/nmf_out/Lung.dbs/matrices/3/sig_profiles.txt.gz",
-#                                    header = T, sep = "\t", stringsAsFactors = F)
-#   id_sig_profile_lung <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/datasets/processed/HMF_PCAWG/sigs_denovo/02_mergedCancerTypes/nmf_out/Lung.indel/matrices/06/sig_profiles.txt.gz",
-#                                   header = T, sep = "\t", stringsAsFactors = F)
-# } else {
-#   
-#   sbs_sig_profile_lung <- readRDS(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/mut-sig-ref/sbs/sbs-sig-profiles.rds")
-#   dbs_sig_profile_lung <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/datasets/processed/HMF_PCAWG/sigs_denovo/02_mergedCancerTypes/nmf_out/Lung.dbs/matrices/3/sig_profiles.txt.gz",
-#                                    header = T, sep = "\t", stringsAsFactors = F)
-#   id_sig_profile_lung <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/datasets/processed/HMF_PCAWG/sigs_denovo/02_mergedCancerTypes/nmf_out/Lung.indel/matrices/06/sig_profiles.txt.gz",
-#                                   header = T, sep = "\t", stringsAsFactors = F)
-#   
-# }
-# 
-# 
-# order_colnames <- order(as.numeric(sapply(strsplit(colnames(sbs_sig_profile_lung), split = "_", 2), tail, 1)))
-# sbs_sig_profile_lung <- sbs_sig_profile_lung[,order_colnames]
-# 
-# order_colnames <- order(as.numeric(sapply(strsplit(colnames(dbs_sig_profile_lung), split = "_", 2), tail, 1)))
-# dbs_sig_profile_lung <- dbs_sig_profile_lung[,order_colnames]
-# 
-# order_colnames <- order(as.numeric(sapply(strsplit(colnames(id_sig_profile_lung), split = "_", 2), tail, 1)))
-# id_sig_profile_lung <- id_sig_profile_lung[,order_colnames]
+# Reading in the sbs profiles
+
+if (dir.exists("/hpc/cuppen/")){
+
+  sbs_sig_profile_lung <- readRDS(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/mut-sig-ref/sbs/sbs-sig-profiles.rds")
+  dbs_sig_profile_lung <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/datasets/processed/HMF_PCAWG/sigs_denovo/02_mergedCancerTypes/nmf_out/Lung.dbs/matrices/3/sig_profiles.txt.gz",
+                                   header = T, sep = "\t", stringsAsFactors = F)
+  id_sig_profile_lung <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/datasets/processed/HMF_PCAWG/sigs_denovo/02_mergedCancerTypes/nmf_out/Lung.indel/matrices/06/sig_profiles.txt.gz",
+                                  header = T, sep = "\t", stringsAsFactors = F)
+} else {
+
+  sbs_sig_profile_lung <- readRDS(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/mut-sig-ref/sbs/sbs-sig-profiles.rds")
+  dbs_sig_profile_lung <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/datasets/processed/HMF_PCAWG/sigs_denovo/02_mergedCancerTypes/nmf_out/Lung.dbs/matrices/3/sig_profiles.txt.gz",
+                                   header = T, sep = "\t", stringsAsFactors = F)
+  id_sig_profile_lung <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/datasets/processed/HMF_PCAWG/sigs_denovo/02_mergedCancerTypes/nmf_out/Lung.indel/matrices/06/sig_profiles.txt.gz",
+                                  header = T, sep = "\t", stringsAsFactors = F)
+
+}
+
+
+order_colnames <- order(as.numeric(sapply(strsplit(colnames(sbs_sig_profile_lung), split = "_", 2), tail, 1)))
+sbs_sig_profile_lung <- sbs_sig_profile_lung[,order_colnames]
+
+order_colnames <- order(as.numeric(sapply(strsplit(colnames(dbs_sig_profile_lung), split = "_", 2), tail, 1)))
+dbs_sig_profile_lung <- dbs_sig_profile_lung[,order_colnames]
+
+order_colnames <- order(as.numeric(sapply(strsplit(colnames(id_sig_profile_lung), split = "_", 2), tail, 1)))
+id_sig_profile_lung <- id_sig_profile_lung[,order_colnames]
 
 
 
@@ -78,19 +78,19 @@ if (dir.exists("/hpc/cuppen/")){
 }
 
 if (dir.exists("/hpc/cuppen/")){
-  hmf_lung_meta <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort.tsv", header = T,
+  hmf_lung_meta <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort-final.tsv", header = T,
                        sep = "\t", stringsAsFactors = F)
 } else {
-  hmf_lung_meta <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort.tsv", header = T,
+  hmf_lung_meta <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort-final.tsv", header = T,
                        sep = "\t", stringsAsFactors = F)
 }
 
 hmf_lung_meta_NSC <- hmf_lung_meta[hmf_lung_meta$cancer_type == "Non-Small Cell",]
 
 
+nrow(hmf_lung_meta_NSC)
 
 
-# 
 # sig_cont_hmf <- list()
 # 
 # sbs_mut_context_mat_hmf <- matrix(nrow = nrow(hmf_lung_meta), ncol = nrow(sbs_sig_profile_lung))
@@ -112,49 +112,49 @@ hmf_lung_meta_NSC <- hmf_lung_meta[hmf_lung_meta$cancer_type == "Non-Small Cell"
 #   print(i)
 #   print(hmf_lung_meta$sampleId[i])
 #   sample_id <- hmf_lung_meta$sampleId[i]
-#   
-#   
-#   
+# 
+# 
+# 
 #   if (dir.exists("/hpc/cuppen/")){
 #     path <- paste0("/hpc/cuppen/shared_resources/HMF_data/DR-104-update3/somatics/",
 #                                         hmf_lung_meta$setName[i], "/purple/", sample_id, ".purple.somatic.vcf.gz")
 #   } else {
-#     
-#   
+# 
+# 
 #   path <- paste0("/hpc/cuppen/shared_resources/HMF_data/DR-104-update3/somatics/",
 #                                       hmf_lung_meta$setName[i], "/purple/", sample_id, ".purple.somatic.vcf.gz")
 #   }
 # 
-#   
-#   
+# 
+# 
 #   snv_mut_matrix <- extractSigsSnv(path, output='contexts', vcf.filter='PASS', sample.name=sample_id)
 #   sbs_mut_context_mat_hmf[sample_id,] <- as.numeric(snv_mut_matrix)
-#   
-#   
+# 
+# 
 #   snv_mut_vector <- as.vector(snv_mut_matrix)
 #   names(snv_mut_vector) <- rownames(snv_mut_matrix)
 #   snv_sig_cont <- fitToSignatures(snv_mut_vector, sbs_sig_profile_lung)
-#   
+# 
 #   dbs_mut_matrix <- extractSigsDbs(path, output='contexts', vcf.filter='PASS', sample.name=sample_id)
 #   dbs_mut_context_mat_hmf[sample_id,] <- as.numeric(dbs_mut_matrix)
-#   
+# 
 #   dbs_mut_vector <- as.vector(dbs_mut_matrix)
 #   names(dbs_mut_vector) <- rownames(dbs_mut_matrix)
 #   dbs_sig_cont <- fitToSignatures(dbs_mut_vector, dbs_sig_profile_lung)
-#   
-#   
+# 
+# 
 #   # We will use the hmf set of ID mutation types which has 83 elements
 #   indel_mut_matrix <- extractSigsIndel(path, output='contexts', vcf.filter='PASS', method = "PCAWG", sample.name=sample_id)
 #   id_mut_context_mat_hmf[sample_id,] <- as.numeric(indel_mut_matrix)
-#   
+# 
 #   indel_mut_vector <- as.vector(indel_mut_matrix)
 #   names(indel_mut_vector) <- rownames(indel_mut_matrix)
 #   indel_sig_cont <- fitToSignatures(indel_mut_vector, id_sig_profile_lung)
-#   
-#   
+# 
+# 
 #   sig_cont_hmf[[sample_id]] <- list(SBS = snv_sig_cont, DBS = dbs_sig_cont, ID = indel_sig_cont)
 # 
-#   
+# 
 # }
 # 
 # 
@@ -173,6 +173,10 @@ hmf_lung_meta_NSC <- hmf_lung_meta[hmf_lung_meta$cancer_type == "Non-Small Cell"
 
 
 
+
+
+
+
 if (dir.exists("/hpc/cuppen/")){
   sig_cont_hmf <- readRDS(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/list-sig-cont-lung-hmf.rds")
   sbs_mut_context_mat_hmf <- readRDS(file = paste0(wd, "sbs_matrix-sig-context-hmf.rds"))
@@ -184,8 +188,10 @@ if (dir.exists("/hpc/cuppen/")){
   sbs_mut_context_mat_hmf <- readRDS(file = paste0(local, wd, "sbs_matrix-sig-context-hmf.rds"))
   dbs_mut_context_mat_hmf <- readRDS(file = paste0(local, wd, "dbs_matrix-sig-context-hmf.rds"))
   id_mut_context_mat_hmf <- readRDS(file = paste0(local, wd, "id_matrix-sig-context-hmf.rds"))
-  
+
 }
+
+
 
 sbs_sig_cont_hmf_df <- as.data.frame(matrix(unlist(lapply(sig_cont_hmf, function(x) x[["SBS"]])), ncol = length(lapply(sig_cont_hmf, function(x) x[["SBS"]])[[1]]), byrow = T))
 colnames(sbs_sig_cont_hmf_df) <- names(lapply(sig_cont_hmf, function(x) x[["SBS"]])[[1]])
@@ -215,23 +221,23 @@ my_plot_contribution <- function(contribution,
                                  palette = NA) {
   # check mode parameter
   mode <- match.arg(mode)
-  
+
   # optional subsetting if index parameter is provided
   if (!is.na(index)) {
     contribution <- contribution[, index, drop = FALSE]
   }
-  
+
   # These variables use non standard evaluation.
   # To avoid R CMD check complaints we initialize them to NULL.
   Sample <- Contribution <- Signature <- NULL
-  
+
   # When working on NMF results, the contribution needs to be multiplied by the signature colSums.
   if (mode == "absolute" & !is.na(signatures)) {
     # calculate signature contribution in absolute number of signatures
     total_signatures <- colSums(signatures)
     abs_contribution <- contribution * total_signatures
   }
-  
+
   # Make data long. Also create factors for ordering.
   tb <- contribution %>%
     as.data.frame() %>%
@@ -241,7 +247,7 @@ my_plot_contribution <- function(contribution,
       Sample = factor(Sample, levels = unique(Sample)),
       Signature = factor(Signature, levels = unique(Signature))
     )
-  
+
   # Different plotting between absolute and relative
   if (mode == "absolute") {
     bar_geom <- geom_bar(stat = "identity", colour = "black")
@@ -250,13 +256,13 @@ my_plot_contribution <- function(contribution,
     bar_geom <- geom_bar(position = "fill", stat = "identity", colour = "black")
     y_lab <- "Relative contribution"
   }
-  
+
   # Determine what signatures are present for the legend.
-  present_sigs <- tb %>% 
-    dplyr::filter(Contribution != 0) %>% 
-    dplyr::pull(Signature) %>% 
+  present_sigs <- tb %>%
+    dplyr::filter(Contribution != 0) %>%
+    dplyr::pull(Signature) %>%
     unique()
-  
+
   #Create plot
   plot <- ggplot(tb, aes(x = Sample, y = Contribution, fill = Signature)) +
     bar_geom +
@@ -269,20 +275,20 @@ my_plot_contribution <- function(contribution,
       panel.grid.minor.y = element_blank(),
       panel.grid.major.y = element_blank()
     )
-    
-  
+
+
   # Allow custom color palettes.
   if (!is.na(palette)) {
     plot <- plot + scale_fill_manual(name = "Signature", values = palette)
   }
-  
+
   # Handle coord_flip.
   if (coord_flip) {
     plot <- plot + coord_flip() + xlim(rev(levels(factor(tb$Sample)))) + theme(axis.ticks.y = element_blank()) + theme(axis.text.y = element_blank())
   } else {
     plot <- plot + xlim(levels(factor(tb$Sample))) + theme(axis.ticks.x = element_blank()) + theme(axis.text.x = element_blank())
   }
-  
+
   return(plot)
 }
 
@@ -290,11 +296,11 @@ my_plot_contribution <- function(contribution,
 
 my_plot_contribution_heatmap <- function(contribution, sig_order = NA, sample_order = NA, cluster_samples = TRUE,
                                          cluster_sigs = FALSE, method = "complete", plot_values = FALSE) {
-  
+
   # These variables use non standard evaluation.
   # To avoid R CMD check complaints we initialize them to NULL.
   Signature <- Sample <- Contribution <- x <- y <- xend <- yend <- NULL
-  
+
   # check contribution argument
   if (!inherits(contribution, "matrix")) {
     stop("contribution must be a matrix")
@@ -303,12 +309,12 @@ my_plot_contribution_heatmap <- function(contribution, sig_order = NA, sample_or
   if (is.null(row.names(contribution))) {
     stop("contribution must have row.names (signature names)")
   }
-  
+
   # transpose
   contribution <- t(contribution)
   # relative contribution
   contribution_norm <- contribution / rowSums(contribution)
-  
+
   # If cluster_samples is TRUE perform clustering. Else use supplied sample_order or
   # the current column order.
   if (!is.na(sample_order) & cluster_samples == TRUE) {
@@ -327,7 +333,7 @@ my_plot_contribution_heatmap <- function(contribution, sig_order = NA, sample_or
     hc.sample <- hclust(dist(contribution_norm), method = method)
     # order samples according to clustering
     sample_order <- rownames(contribution_norm)[hc.sample$order]
-    
+
     dhc <- as.dendrogram(hc.sample)
     # rectangular lines
     ddata <- ggdendro::dendro_data(dhc, type = "rectangle")
@@ -341,8 +347,8 @@ my_plot_contribution_heatmap <- function(contribution, sig_order = NA, sample_or
   else {
     sample_order <- rownames(contribution_norm)
   }
-  
-  
+
+
   # If cluster_sigs is TRUE perform clustering. Else use supplied sig_order or
   # the current column order.
   if (!is.na(sig_order) & cluster_sigs == TRUE) {
@@ -363,7 +369,7 @@ my_plot_contribution_heatmap <- function(contribution, sig_order = NA, sample_or
       dist() %>%
       hclust(method = method)
     sig_order <- colnames(contribution_norm)[hc.sample2$order]
-    
+
     dhc <- as.dendrogram(hc.sample2)
     # rectangular lines
     ddata <- ggdendro::dendro_data(dhc, type = "rectangle")
@@ -375,7 +381,7 @@ my_plot_contribution_heatmap <- function(contribution, sig_order = NA, sample_or
   } else {
     sig_order <- colnames(contribution_norm)
   }
-  
+
   # Make matrix long and set factor levels, to get the correct order for plotting.
   contribution_norm.m <- contribution_norm %>%
     as.data.frame() %>%
@@ -385,7 +391,7 @@ my_plot_contribution_heatmap <- function(contribution, sig_order = NA, sample_or
       Signature = factor(Signature, levels = sig_order),
       Sample = factor(Sample, levels = sample_order)
     )
-  
+
   # plot heatmap
   heatmap <- ggplot(contribution_norm.m, aes(x = Signature, y = Sample, fill = Contribution, order = Sample)) +
     geom_raster() +
@@ -403,7 +409,7 @@ my_plot_contribution_heatmap <- function(contribution, sig_order = NA, sample_or
   if (plot_values) {
     heatmap <- heatmap + geom_text(aes(label = round(Contribution, 2)), size = 3)
   }
-  
+
   return(heatmap)
 }
 
@@ -435,15 +441,14 @@ nmf_res <- readRDS(system.file("states/nmf_res_data.rds",
 
 
 
-sbs_sig_cont_hmf_mat <- as.matrix(sbs_sig_cont_hmf_df)
+sbs_sig_cont_hmf_mat <- as.matrix(sbs_sig_cont_hmf_df_NSC)
 sbs_sig_cont_hmf_mat <- t(sbs_sig_cont_hmf_mat)
 
-dbs_sig_cont_hmf_mat <- as.matrix(dbs_sig_cont_hmf_df)
+dbs_sig_cont_hmf_mat <- as.matrix(dbs_sig_cont_hmf_df_NSC)
 dbs_sig_cont_hmf_mat <- t(dbs_sig_cont_hmf_mat)
 
-id_sig_cont_hmf_mat <- as.matrix(id_sig_cont_hmf_df)
+id_sig_cont_hmf_mat <- as.matrix(id_sig_cont_hmf_df_NSC)
 id_sig_cont_hmf_mat <- t(id_sig_cont_hmf_mat)
-
 
 
 
@@ -465,8 +470,6 @@ sbs_stacked_bar_cont <- my_plot_contribution(sbs_sig_cont_hmf_mat, signatures = 
                                       palette = cols)
 
 sbs_stacked_bar_cont
-
-
 
 dhc <- as.dendrogram(hc.sample)
 
@@ -501,27 +504,27 @@ sbs_heatmap_count <- my_plot_contribution_heatmap(sbs_sig_cont_hmf_mat, sig_orde
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/sbs-rel-cont-stacked-barplot.png", width = 960, height = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/sbs-rel-cont-stacked-barplot-hmf-final.png", width = 960, height = 960)
     print(sbs_stacked_bar_cont_clustering)
     dev.off()
-    
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/sbs-rel-cont-stacked-heatmap.png", width = 660, height = 660)
+
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/sbs-rel-cont-stacked-heatmap-hmf-final.png", width = 660, height = 660)
     print(sbs_heatmap_count +
             ggtitle("Single-base Substitution Contribution Heatmap \n \n") +
-            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
+            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
     )
     dev.off()
-    
+
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/sbs-rel-cont-stacked-barplot.pdf", width = 14, height = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/sbs-rel-cont-stacked-barplot-hmf-final.pdf", width = 14, height = 14)
     print(sbs_stacked_bar_cont_clustering)
     dev.off()
-    
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/sbs-rel-cont-stacked-heatmap.pdf", width = 10, height = 10)
+
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/sbs-rel-cont-stacked-heatmap-hmf-final.pdf", width = 10, height = 10)
     print(sbs_heatmap_count +
             ggtitle("Single-base Substitution Contribution Heatmap \n \n") +
-            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
+            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
     )
     dev.off()
   }
@@ -549,7 +552,6 @@ dbs_stacked_bar_cont <- my_plot_contribution(dbs_sig_cont_hmf_mat, signatures = 
                                       palette = cols)
 
 dbs_stacked_bar_cont
-
 
 
 dhc <- as.dendrogram(hc.sample)
@@ -581,27 +583,27 @@ dbs_heatmap_count <- my_plot_contribution_heatmap(dbs_sig_cont_hmf_mat, sig_orde
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/dbs-rel-cont-stacked-barplot.png", width = 960, height = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/dbs-rel-cont-stacked-barplot-hmf-final.png", width = 960, height = 960)
     print(dbs_stacked_bar_cont_clustering)
     dev.off()
-    
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/dbs-rel-cont-stacked-heatmap.png", width = 660, height = 660)
+
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/dbs-rel-cont-stacked-heatmap-hmf-final.png", width = 660, height = 660)
     print(dbs_heatmap_count +
             ggtitle("Double-base Substitution Contribution Heatmap \n \n") +
-            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
+            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
     )
     dev.off()
-    
+
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/dbs-rel-cont-stacked-barplot.pdf", width = 14, height = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/dbs-rel-cont-stacked-barplot-hmf-final.pdf", width = 14, height = 14)
     print(dbs_stacked_bar_cont_clustering)
     dev.off()
-    
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/dbs-rel-cont-stacked-heatmap.pdf", width = 10, height = 10)
+
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/dbs-rel-cont-stacked-heatmap-hmf-final.pdf", width = 10, height = 10)
     print(dbs_heatmap_count +
             ggtitle("Double-base Substitution Contribution Heatmap \n \n") +
-            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
+            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
     )
     dev.off()
   }
@@ -663,27 +665,27 @@ id_heatmap_count <- my_plot_contribution_heatmap(id_sig_cont_hmf_mat, sig_order 
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/id-rel-cont-stacked-barplot.png", width = 960, height = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/id-rel-cont-stacked-barplot-hmf-final.png", width = 960, height = 960)
     print(id_stacked_bar_cont_clustering)
     dev.off()
-    
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/id-rel-cont-stacked-heatmap.png", width = 660, height = 660)
+
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/id-rel-cont-stacked-heatmap-hmf-final.png", width = 660, height = 660)
     print(id_heatmap_count +
             ggtitle("Small INDEL Contribution Heatmap \n \n") +
-            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
+            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
     )
     dev.off()
-    
+
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/id-rel-cont-stacked-barplot.pdf", width = 14, height = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/id-rel-cont-stacked-barplot-hmf-final.pdf", width = 14, height = 14)
     print(id_stacked_bar_cont_clustering)
     dev.off()
-    
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/id-rel-cont-stacked-heatmap.pdf", width = 10, height = 10)
+
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/id-rel-cont-stacked-heatmap-hmf-final.pdf", width = 10, height = 10)
     print(id_heatmap_count +
             ggtitle("Small INDEL Contribution Heatmap \n \n") +
-            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
+            theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
     )
     dev.off()
   }
@@ -745,12 +747,12 @@ hmf_mut_sig_spectrum <- cowplot::plot_grid(sbs_stacked_bar_cont, dbs_stacked_bar
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/combined-rel-cont-stacked-barplots.png", width = 1440, height = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/combined-rel-cont-stacked-barplots-hmf-final.png", width = 1440, height = 960)
     print(hmf_mut_sig_spectrum)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/combined-rel-cont-stacked-barplots.pdf", width = 21, height = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/combined-rel-cont-stacked-barplots-hmf-final.pdf", width = 21, height = 14)
     print(hmf_mut_sig_spectrum)
     dev.off()
   }

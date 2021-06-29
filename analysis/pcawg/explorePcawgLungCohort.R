@@ -426,7 +426,7 @@ sv_count_df_pcawg <- as.data.frame(sv_count_matrix_pcawg)
 head(sv_count_df_pcawg)
 
 sv_count_df_pcawg_norm <- sv_count_df_pcawg[,1:5]#/rowSums(sv_count_df_pcawg[,1:5])
-rownames(sv_count_df_pcawg_norm) <- sv_count_df_pcawg$sampleId
+
 sv_count_df_pcawg_norm <- t(sv_count_df_pcawg_norm)
 
 
@@ -457,7 +457,7 @@ tmb_plot <- count_tibb_pcawg %>% ggplot(aes(x = sampleId, y = Count, fill = Mut_
     panel.grid.minor.x = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.minor.y = element_blank(),
-    panel.grid.major.y = element_blank()
+    panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed")
   ) +
   theme(axis.ticks.x = element_blank()) +
   theme(axis.text.x = element_blank()) +
@@ -494,11 +494,11 @@ sv_plot <- sv_count_tibb_pcawg %>% ggplot(aes(x = sampleId, y = Count, fill = Mu
     panel.grid.minor.x = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.minor.y = element_blank(),
-    panel.grid.major.y = element_blank()
+    panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed")
   ) +
   theme(axis.ticks.x = element_blank()) +
   theme(axis.text.x = element_blank()) +
-  labs(x = "PCAWG Lung Samples", y = "Counts", fill = "SV Type")
+  labs(x = "PCAWG NSCLC Samples (n = 88)", y = "Counts", fill = "SV Type")
 
 
 # Combine
@@ -516,12 +516,12 @@ pcawg_mut_dist <- cowplot::plot_grid(tmb_plot_grob, sv_plot_grob, align = "v", r
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/png/mut-count-per-sample.png")
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/png/mut-count-per-sample-final.png")
     print(pcawg_mut_dist)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/pdf/mut-count-per-sample.pdf")
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/pdf/mut-count-per-sample-final.pdf")
     print(pcawg_mut_dist)
     dev.off()
   }
@@ -572,10 +572,10 @@ clonality_plot_summary_pcawg <- clonality_summary_pcawg %>% ggplot(aes(x = sampl
   geom_bar(position="stack", stat="identity", width = 1) +
   scale_fill_manual(values = c("red", "black", "yellow")) +
   ggtitle("Clonality States of Different Mutation Types \n") +
-  labs(x = "pcawg Lung Samples", y = "Frequency", fill = "Clonality") +
+  labs(x = "PCAWG NSCLC Samples (n = 88)", y = "Frequency", fill = "Clonality") +
   theme_bw() +
   theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) +
-  theme(axis.ticks.x = element_blank()) + theme(axis.text.x = element_blank())
+  theme(axis.ticks.x = element_blank()) + theme(axis.text.x = element_blank()) + theme(panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed"))
 
 
 
@@ -583,12 +583,12 @@ clonality_plot_summary_pcawg <- clonality_summary_pcawg %>% ggplot(aes(x = sampl
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/png/clonality_plot_summary_pcawg.png", width = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/png/clonality-plot-summary-pcawg-final.png", width = 960)
     print(clonality_plot_summary_pcawg)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/pdf/clonality_plot_summary_pcawg.pdf", width = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/pdf/clonality-plot-summary-pcawg-final.pdf", width = 14)
     print(clonality_plot_summary_pcawg)
     dev.off()
   }
