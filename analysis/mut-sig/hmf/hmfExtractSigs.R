@@ -19,7 +19,8 @@ local <- "/home/ali313/Documents/studies/master/umc-project"
 
 
 
-
+a
+b
 
 # Reading in the sbs profiles
 
