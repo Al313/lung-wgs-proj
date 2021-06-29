@@ -470,11 +470,11 @@ sbs_heatmap_count <- my_plot_contribution_heatmap(sbs_sig_cont_pcawg_mat, sig_or
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/sbs-rel-cont-stacked-barplot.png", width = 960, height = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/sbs-rel-cont-stacked-barplot.hmf.png", width = 960, height = 960)
     print(sbs_stacked_bar_cont_clustering)
     dev.off()
     
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/sbs-rel-cont-stacked-heatmap.png", width = 660, height = 660)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/sbs-rel-cont-stacked-heatmap.hmf.png", width = 660, height = 660)
     print(sbs_heatmap_count +
             ggtitle("Single-base Substitution Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
@@ -483,11 +483,11 @@ for (i in 1:2){
     
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/sbs-rel-cont-stacked-barplot.pdf", width = 14, height = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/sbs-rel-cont-stacked-barplot.pcawg.pdf", width = 14, height = 14)
     print(sbs_stacked_bar_cont_clustering)
     dev.off()
     
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/sbs-rel-cont-stacked-heatmap.pdf", width = 10, height = 10)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/sbs-rel-cont-stacked-heatmap.pcawg.pdf", width = 10, height = 10)
     print(sbs_heatmap_count +
             ggtitle("Single-base Substitution Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
@@ -553,11 +553,11 @@ dbs_heatmap_count <- my_plot_contribution_heatmap(dbs_sig_cont_pcawg_mat, sig_or
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/dbs-rel-cont-stacked-barplot.png", width = 960, height = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/dbs-rel-cont-stacked-barplot.hmf.png", width = 960, height = 960)
     print(dbs_stacked_bar_cont_clustering)
     dev.off()
     
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/dbs-rel-cont-stacked-heatmap.png", width = 660, height = 660)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/dbs-rel-cont-stacked-heatmap.hmf.png", width = 660, height = 660)
     print(dbs_heatmap_count +
             ggtitle("Double-base Substitution Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
@@ -566,11 +566,11 @@ for (i in 1:2){
     
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/dbs-rel-cont-stacked-barplot.pdf", width = 14, height = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/dbs-rel-cont-stacked-barplot.pcawg.pdf", width = 14, height = 14)
     print(dbs_stacked_bar_cont_clustering)
     dev.off()
     
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/dbs-rel-cont-stacked-heatmap.pdf", width = 10, height = 10)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/dbs-rel-cont-stacked-heatmap.pcawg.pdf", width = 10, height = 10)
     print(dbs_heatmap_count +
             ggtitle("Double-base Substitution Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
@@ -637,11 +637,11 @@ id_heatmap_count <- my_plot_contribution_heatmap(id_sig_cont_pcawg_mat, sig_orde
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/id-rel-cont-stacked-barplot.png", width = 960, height = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/id-rel-cont-stacked-barplot.hmf.png", width = 960, height = 960)
     print(id_stacked_bar_cont_clustering)
     dev.off()
     
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/id-rel-cont-stacked-heatmap.png", width = 660, height = 660)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/id-rel-cont-stacked-heatmap.hmf.png", width = 660, height = 660)
     print(id_heatmap_count +
             ggtitle("Small INDEL Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
@@ -650,11 +650,11 @@ for (i in 1:2){
     
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/id-rel-cont-stacked-barplot.pdf", width = 14, height = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/id-rel-cont-stacked-barplot.pcawg.pdf", width = 14, height = 14)
     print(id_stacked_bar_cont_clustering)
     dev.off()
     
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/id-rel-cont-stacked-heatmap.pdf", width = 10, height = 10)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/id-rel-cont-stacked-heatmap.pcawg.pdf", width = 10, height = 10)
     print(id_heatmap_count +
             ggtitle("Small INDEL Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) 
@@ -748,12 +748,12 @@ pcawg_mut_sig_spectrum <- cowplot::plot_grid(sbs_stacked_bar_cont, dbs_stacked_b
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/combined-rel-cont-stacked-barplots.png", width = 960, height = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/png/combined-rel-cont-stacked-barplots.hmf.png", width = 960, height = 960)
     print(pcawg_mut_sig_spectrum)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/combined-rel-cont-stacked-barplots.pdf", width = 14, height = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/pcawg/figs/pdf/combined-rel-cont-stacked-barplots.pcawg.pdf", width = 14, height = 14)
     print(pcawg_mut_sig_spectrum)
     dev.off()
   }

@@ -426,7 +426,7 @@ sv_count_df_pcawg <- as.data.frame(sv_count_matrix_pcawg)
 head(sv_count_df_pcawg)
 
 sv_count_df_pcawg_norm <- sv_count_df_pcawg[,1:5]#/rowSums(sv_count_df_pcawg[,1:5])
-rownames(sv_count_df_pcawg_norm) <- sv_count_df_pcawg$sampleId
+
 sv_count_df_pcawg_norm <- t(sv_count_df_pcawg_norm)
 
 
@@ -457,7 +457,7 @@ tmb_plot <- count_tibb_pcawg %>% ggplot(aes(x = sampleId, y = Count, fill = Mut_
     panel.grid.minor.x = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.minor.y = element_blank(),
-    panel.grid.major.y = element_blank()
+    panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed")
   ) +
   theme(axis.ticks.x = element_blank()) +
   theme(axis.text.x = element_blank()) +
@@ -494,7 +494,7 @@ sv_plot <- sv_count_tibb_pcawg %>% ggplot(aes(x = sampleId, y = Count, fill = Mu
     panel.grid.minor.x = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.minor.y = element_blank(),
-    panel.grid.major.y = element_blank()
+    panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed")
   ) +
   theme(axis.ticks.x = element_blank()) +
   theme(axis.text.x = element_blank()) +
@@ -572,10 +572,10 @@ clonality_plot_summary_pcawg <- clonality_summary_pcawg %>% ggplot(aes(x = sampl
   geom_bar(position="stack", stat="identity", width = 1) +
   scale_fill_manual(values = c("red", "black", "yellow")) +
   ggtitle("Clonality States of Different Mutation Types \n") +
-  labs(x = "pcawg Lung Samples", y = "Frequency", fill = "Clonality") +
+  labs(x = "PCAWG Lung Samples", y = "Frequency", fill = "Clonality") +
   theme_bw() +
   theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) +
-  theme(axis.ticks.x = element_blank()) + theme(axis.text.x = element_blank())
+  theme(axis.ticks.x = element_blank()) + theme(axis.text.x = element_blank()) + theme(panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed"))
 
 
 

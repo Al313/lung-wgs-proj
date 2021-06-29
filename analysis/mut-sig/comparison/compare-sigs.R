@@ -35,6 +35,8 @@ if (dir.exists("/hpc/cuppen/")){
 }
 
 
+source("/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/themes.R")
+
 
 # Reading in pcawg metadata
 
@@ -101,10 +103,10 @@ if (dir.exists("/hpc/cuppen/")){
 
 
 if (dir.exists("/hpc/cuppen/")){
-  hmf_lung_meta <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort.tsv", header = T,
+  hmf_lung_meta <- read.csv(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort-final.tsv", header = T,
                        sep = "\t", stringsAsFactors = F)
 } else {
-  hmf_lung_meta <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort.tsv", header = T,
+  hmf_lung_meta <- read.csv(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/datasets/hmf/hmf-lung-cohort-final.tsv", header = T,
                        sep = "\t", stringsAsFactors = F)
 }
 
@@ -156,9 +158,13 @@ id_sig_cont_hmf_df_NSC <- id_sig_cont_hmf_df[rownames(id_sig_cont_hmf_df) %in% h
 ### Absolute
 copy_sbs_sig_cont_pcawg_df <- sbs_sig_cont_pcawg_df
 
+
 copy_sbs_sig_cont_pcawg_df %<>% mutate(sampleId = rownames(copy_sbs_sig_cont_pcawg_df)) %>% relocate(where(is.character), .before = where(is.numeric))
+copy_sbs_sig_cont_pcawg_df$sum.of.age.sigs.denovo_4_7_10 <- rowSums(copy_sbs_sig_cont_pcawg_df[,c("SBS5.Age.77.denovo_4", "SBS1.Age.97.denovo_7", "SBS40.Age.80.denovo_10")])
+copy_sbs_sig_cont_pcawg_df$sum.of.tobacco.sigs.denovo_9_12 <- rowSums(copy_sbs_sig_cont_pcawg_df[,c("SBS4.Tobacco.90.denovo_9", "SBS29.Tobacco_chewing.69.denovo_12")])
+
 rownames(copy_sbs_sig_cont_pcawg_df) <- 1:nrow(copy_sbs_sig_cont_pcawg_df)
-copy_sbs_sig_cont_pcawg_tibb <- gather(copy_sbs_sig_cont_pcawg_df, key = "SBS_sig", value = "Abs_count", 2:16)
+copy_sbs_sig_cont_pcawg_tibb <- gather(copy_sbs_sig_cont_pcawg_df, key = "SBS_sig", value = "Abs_count", 2:18)
 copy_sbs_sig_cont_pcawg_tibb %<>% mutate(Dataset = "Primary")
 
 
@@ -167,12 +173,18 @@ copy_sbs_sig_cont_pcawg_tibb %<>% mutate(Dataset = "Primary")
 
 ### Relative
 
-norm_sbs_sig_cont_pcawg_df <- sbs_sig_cont_pcawg_df/rowSums(sbs_sig_cont_pcawg_df)
+copy2_sbs_sig_cont_pcawg_df <- sbs_sig_cont_pcawg_df
+
+
+copy2_sbs_sig_cont_pcawg_df$sum.of.age.sigs.denovo_4_7_10 <- rowSums(copy2_sbs_sig_cont_pcawg_df[,c("SBS5.Age.77.denovo_4", "SBS1.Age.97.denovo_7", "SBS40.Age.80.denovo_10")])
+copy2_sbs_sig_cont_pcawg_df$sum.of.tobacco.sigs.denovo_9_12 <- rowSums(copy2_sbs_sig_cont_pcawg_df[,c("SBS4.Tobacco.90.denovo_9", "SBS29.Tobacco_chewing.69.denovo_12")])
+
+norm_sbs_sig_cont_pcawg_df <- copy2_sbs_sig_cont_pcawg_df/rowSums(copy2_sbs_sig_cont_pcawg_df)
 
 
 norm_sbs_sig_cont_pcawg_df %<>% mutate(sampleId = rownames(norm_sbs_sig_cont_pcawg_df)) %>% relocate(where(is.character), .before = where(is.numeric))
 rownames(norm_sbs_sig_cont_pcawg_df) <- 1:nrow(norm_sbs_sig_cont_pcawg_df)
-norm_sbs_sig_cont_pcawg_tibb <- gather(norm_sbs_sig_cont_pcawg_df, key = "SBS_sig", value = "Rel_count", 2:16)
+norm_sbs_sig_cont_pcawg_tibb <- gather(norm_sbs_sig_cont_pcawg_df, key = "SBS_sig", value = "Rel_count", 2:18)
 norm_sbs_sig_cont_pcawg_tibb %<>% mutate(Dataset = "Primary")
 
 
@@ -182,24 +194,31 @@ norm_sbs_sig_cont_pcawg_tibb %<>% mutate(Dataset = "Primary")
 ### Absolute
 
 
-copy_sbs_sig_cont_hmf_df <- sbs_sig_cont_hmf_df
+copy_sbs_sig_cont_hmf_df <- sbs_sig_cont_hmf_df_NSC
 
 copy_sbs_sig_cont_hmf_df %<>% mutate(sampleId = rownames(copy_sbs_sig_cont_hmf_df)) %>% relocate(where(is.character), .before = where(is.numeric))
+copy_sbs_sig_cont_hmf_df$sum.of.age.sigs.denovo_4_7_10 <- rowSums(copy_sbs_sig_cont_hmf_df[,c("SBS5.Age.77.denovo_4", "SBS1.Age.97.denovo_7", "SBS40.Age.80.denovo_10")])
+copy_sbs_sig_cont_hmf_df$sum.of.tobacco.sigs.denovo_9_12 <- rowSums(copy_sbs_sig_cont_hmf_df[,c("SBS4.Tobacco.90.denovo_9", "SBS29.Tobacco_chewing.69.denovo_12")])
+
 rownames(copy_sbs_sig_cont_hmf_df) <- 1:nrow(copy_sbs_sig_cont_hmf_df)
-copy_sbs_sig_cont_hmf_tibb <- gather(copy_sbs_sig_cont_hmf_df, key = "SBS_sig", value = "Abs_count", 2:16)
+copy_sbs_sig_cont_hmf_tibb <- gather(copy_sbs_sig_cont_hmf_df, key = "SBS_sig", value = "Abs_count", 2:18)
 copy_sbs_sig_cont_hmf_tibb %<>% mutate(Dataset = "Metastatic")
 
 
 
 ### Relative
+copy2_sbs_sig_cont_hmf_df <- sbs_sig_cont_hmf_df_NSC
 
-norm_sbs_sig_cont_hmf_df <- sbs_sig_cont_hmf_df/rowSums(sbs_sig_cont_hmf_df)
+copy2_sbs_sig_cont_hmf_df$sum.of.age.sigs.denovo_4_7_10 <- rowSums(copy2_sbs_sig_cont_hmf_df[,c("SBS5.Age.77.denovo_4", "SBS1.Age.97.denovo_7", "SBS40.Age.80.denovo_10")])
+copy2_sbs_sig_cont_hmf_df$sum.of.tobacco.sigs.denovo_9_12 <- rowSums(copy2_sbs_sig_cont_hmf_df[,c("SBS4.Tobacco.90.denovo_9", "SBS29.Tobacco_chewing.69.denovo_12")])
+
+norm_sbs_sig_cont_hmf_df <- copy2_sbs_sig_cont_hmf_df/rowSums(copy2_sbs_sig_cont_hmf_df)
 
 
 
 norm_sbs_sig_cont_hmf_df %<>% mutate(sampleId = rownames(norm_sbs_sig_cont_hmf_df)) %>% relocate(where(is.character), .before = where(is.numeric))
 rownames(norm_sbs_sig_cont_hmf_df) <- 1:nrow(norm_sbs_sig_cont_hmf_df)
-norm_sbs_sig_cont_hmf_tibb <- gather(norm_sbs_sig_cont_hmf_df, key = "SBS_sig", value = "Rel_count", 2:16)
+norm_sbs_sig_cont_hmf_tibb <- gather(norm_sbs_sig_cont_hmf_df, key = "SBS_sig", value = "Rel_count", 2:18)
 norm_sbs_sig_cont_hmf_tibb %<>% mutate(Dataset = "Metastatic")
 
 
@@ -217,7 +236,7 @@ norm_sbs_sig_cont_hmf_tibb %<>% mutate(Dataset = "Metastatic")
 
 sbs_sig_cont_comb_absolute <- rbind(copy_sbs_sig_cont_pcawg_tibb, copy_sbs_sig_cont_hmf_tibb)
 
-sbs_sig_cont_comb_absolute$SBS_sig <- factor(sbs_sig_cont_comb_absolute$SBS_sig, levels = colnames(sbs_sig_cont_pcawg_df))
+sbs_sig_cont_comb_absolute$SBS_sig <- factor(sbs_sig_cont_comb_absolute$SBS_sig, levels = c(colnames(sbs_sig_cont_pcawg_df), "sum.of.age.sigs.denovo_4_7_10", "sum.of.tobacco.sigs.denovo_9_12"))
 sbs_sig_cont_comb_absolute$Dataset <- factor(sbs_sig_cont_comb_absolute$Dataset, levels = c("Primary", "Metastatic"))
 
 
@@ -235,6 +254,7 @@ stat.test <- sbs_sig_cont_comb_absolute %>%
 stat.test <- stat.test %>%
   add_xy_position(x = "SBS_sig", dodge = 0.8)
 stat.test$y.position <- stat.test$y.position
+
 
 
 sbs_absolute_contrib_plot <- sbs_sig_cont_comb_absolute %>% ggplot(aes(x = SBS_sig, y = Abs_count, color = Dataset)) +
@@ -265,12 +285,12 @@ sbs_absolute_contrib_plot
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/sbs-comparison-absolute-contribution.png")
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/sbs-comparison-absolute-contribution-nsc.png")
     print(sbs_absolute_contrib_plot)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/sbs-comparison-absolute-contribution.pdf")
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/sbs-comparison-absolute-contribution-nsc.pdf")
     print(sbs_absolute_contrib_plot)
     dev.off()
   }
@@ -281,13 +301,11 @@ for (i in 1:2){
 
 
 
-
-
 ### Relative
 
 sbs_sig_cont_comb_relative <- rbind(norm_sbs_sig_cont_pcawg_tibb, norm_sbs_sig_cont_hmf_tibb)
 
-sbs_sig_cont_comb_relative$SBS_sig <- factor(sbs_sig_cont_comb_relative$SBS_sig, levels = colnames(sbs_sig_cont_pcawg_df))
+sbs_sig_cont_comb_relative$SBS_sig <- factor(sbs_sig_cont_comb_relative$SBS_sig, levels = c(colnames(sbs_sig_cont_pcawg_df), "sum.of.age.sigs.denovo_4_7_10", "sum.of.tobacco.sigs.denovo_9_12"))
 sbs_sig_cont_comb_relative$Dataset <- factor(sbs_sig_cont_comb_relative$Dataset, levels = c("Primary", "Metastatic"))
 
 
@@ -335,12 +353,12 @@ sbs_relative_contrib_plot
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/sbs-comparison-relative-contribution.png")
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/sbs-comparison-relative-contribution-nsc.png")
     print(sbs_relative_contrib_plot)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/sbs-comparison-relative-contribution.pdf")
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/sbs-comparison-relative-contribution-nsc.pdf")
     print(sbs_relative_contrib_plot)
     dev.off()
   }
@@ -393,7 +411,7 @@ norm_dbs_sig_cont_pcawg_tibb %<>% mutate(Dataset = "Primary")
 ### Absolute
 
 
-copy_dbs_sig_cont_hmf_df <- dbs_sig_cont_hmf_df
+copy_dbs_sig_cont_hmf_df <- dbs_sig_cont_hmf_df_NSC
 
 copy_dbs_sig_cont_hmf_df %<>% mutate(sampleId = rownames(copy_dbs_sig_cont_hmf_df)) %>% relocate(where(is.character), .before = where(is.numeric))
 rownames(copy_dbs_sig_cont_hmf_df) <- 1:nrow(copy_dbs_sig_cont_hmf_df)
@@ -404,7 +422,7 @@ copy_dbs_sig_cont_hmf_tibb %<>% mutate(Dataset = "Metastatic")
 
 ### Relative
 
-norm_dbs_sig_cont_hmf_df <- dbs_sig_cont_hmf_df/rowSums(dbs_sig_cont_hmf_df)
+norm_dbs_sig_cont_hmf_df <- dbs_sig_cont_hmf_df_NSC/rowSums(dbs_sig_cont_hmf_df_NSC)
 
 
 
@@ -447,6 +465,7 @@ stat.test <- stat.test %>%
   add_xy_position(x = "dbs_sig", dodge = 0.8)
 stat.test$y.position <- stat.test$y.position
 
+head(dbs_sig_cont_comb_absolute)
 
 dbs_absolute_contrib_plot <- dbs_sig_cont_comb_absolute %>% ggplot(aes(x = dbs_sig, y = Abs_count, color = Dataset)) +
   geom_boxplot(outlier.shape = NA) +
@@ -476,12 +495,12 @@ dbs_absolute_contrib_plot
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/dbs-comparison-absolute-contribution.png")
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/dbs-comparison-absolute-contribution-nsc.png")
     print(dbs_absolute_contrib_plot)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/dbs-comparison-absolute-contribution.pdf")
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/dbs-comparison-absolute-contribution-nsc.pdf")
     print(dbs_absolute_contrib_plot)
     dev.off()
   }
@@ -546,12 +565,12 @@ dbs_relative_contrib_plot
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/dbs-comparison-relative-contribution.png")
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/dbs-comparison-relative-contribution-nsc.png")
     print(dbs_relative_contrib_plot)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/dbs-comparison-relative-contribution.pdf")
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/dbs-comparison-relative-contribution-nsc.pdf")
     print(dbs_relative_contrib_plot)
     dev.off()
   }
@@ -564,15 +583,6 @@ for (i in 1:2){
 
 #################################################################################################################################################
 # Comparing ID sigs
-
-
-
-
-
-
-
-
-
 
 
 
@@ -607,7 +617,7 @@ norm_id_sig_cont_pcawg_tibb %<>% mutate(Dataset = "Primary")
 ### Absolute
 
 
-copy_id_sig_cont_hmf_df <- id_sig_cont_hmf_df
+copy_id_sig_cont_hmf_df <- id_sig_cont_hmf_df_NSC
 
 copy_id_sig_cont_hmf_df %<>% mutate(sampleId = rownames(copy_id_sig_cont_hmf_df)) %>% relocate(where(is.character), .before = where(is.numeric))
 rownames(copy_id_sig_cont_hmf_df) <- 1:nrow(copy_id_sig_cont_hmf_df)
@@ -618,7 +628,7 @@ copy_id_sig_cont_hmf_tibb %<>% mutate(Dataset = "Metastatic")
 
 ### Relative
 
-norm_id_sig_cont_hmf_df <- id_sig_cont_hmf_df/rowSums(id_sig_cont_hmf_df)
+norm_id_sig_cont_hmf_df <- id_sig_cont_hmf_df_NSC/rowSums(id_sig_cont_hmf_df_NSC)
 
 
 
@@ -629,15 +639,10 @@ norm_id_sig_cont_hmf_tibb %<>% mutate(Dataset = "Metastatic")
 
 
 
-
-
 ## Combine 
 
 
 ### Absolute
-
-
-
 
 
 id_sig_cont_comb_absolute <- rbind(copy_id_sig_cont_pcawg_tibb, copy_id_sig_cont_hmf_tibb)
@@ -690,12 +695,12 @@ id_absolute_contrib_plot
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/id-comparison-absolute-contribution.png")
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/id-comparison-absolute-contribution-nsc.png")
     print(id_absolute_contrib_plot)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/id-comparison-absolute-contribution.pdf")
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/id-comparison-absolute-contribution-nsc.pdf")
     print(id_absolute_contrib_plot)
     dev.off()
   }
@@ -760,12 +765,12 @@ id_relative_contrib_plot
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/id-comparison-relative-contribution.png")
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/png/id-comparison-relative-contribution-nsc.png")
     print(id_relative_contrib_plot)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/id-comparison-relative-contribution.pdf")
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/comparison/figs/pdf/id-comparison-relative-contribution-nsc.pdf")
     print(id_relative_contrib_plot)
     dev.off()
   }

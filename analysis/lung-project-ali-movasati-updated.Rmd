@@ -1,0 +1,350 @@
+---
+title: "Lung Analysis"
+author: "Ali Movasati"
+date: "6/25/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+|   In this report we present the comparison of genomic landscape of lung cohort in two datasets: 1. the PCAWG dataset _ which is a representative of primary tumors; and, 2. the HMF dataset _ which is a representative of metastatic tumors. In total, we analyzed 88 PCAWG lung cancers and 381 HMF lung cancers. These numbers were achieved after removing samples that did not have reliable clinical data available or had dubious sites of origins. Of note, there was no single-cell lung cancer (SCLC) among the PCAWG lung cohort and none of them had smoking records. Therefore, we were not able to subset the PCAWG lung samples into NSCLC/SCLC or non-/current-/former-smoker sub-categories for comparison.
+
+
+|   In the first part of this analysis, the mutational landscape of two cohorts are summarized and compared. In the second part, mutational signature (MS) contribution for both cohorts were computed with sets of lung-specific SBS, DBS, and ID reference signatures and compared between the datasets.
+
+
+|   Note that because it was shown that NSCLC and SCLC tumors show significant differences, for a more accurate comparison we will only use **343** NSCLC HMF lung samples. That's because PCAWG cohort only contains this type of lung cancer.
+
+## 1. TMB Analysis
+
+|   For both cohorts, the number of single-nucleotide variants (SNVs), multiple-nucleotide variants (MNVs), and small insetions/deletions (INDELs) were obtained from VCF files and their absolute counts were plotted for each sample. In addition, small structural variant (SV) events were also counted and plotted in a separate plot. 
+
+
+
+```{r mutation landscape, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/mut-count-per-sample-pcawg-1.jpg"
+knitr::include_graphics(img1_path)
+
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/mut-count-per-sample-nsc-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+```
+
+
+
+
+
+Next we plotted the relation of age and TMB (sum of SNVs, MNVs, and INDELs) for each sex and dataset separately. 
+
+
+
+
+```{r tmb and age, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/age-tmb-nsc-1.jpg"
+knitr::include_graphics(img1_path)
+
+
+```
+
+|   To compare the number of mutations between the two datasets, we plotted each mutation type separately. We could confirm that for all mutation types the frequency is increased in HMF dataset (p.val < 0.05) to varying degrees.
+
+
+```{r mutation comparison, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/tmb-boxplots-nsc-1.jpg"
+knitr::include_graphics(img1_path)
+
+
+```
+
+
+
+
+|    In addition we visualized number of each mutation type that is annotated as clonal or non-clonal according to the hmf pipeline. Most mutations had unknown clonality, and out of those with a known clonality the larger proportion were clonal mutations. Comparing the clonal to non-clonal between the two datasets, we could not find a significant difference.
+
+```{r clonality, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/clonality_plot_summary_pcawg-1.jpg"
+knitr::include_graphics(img1_path)
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/clonality-plot-summary-hmf-nsc-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+img3_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/clonality-plot-nsc-1.jpg"
+knitr::include_graphics(img3_path)
+
+```
+
+
+
+|   Lastly, the same comparison was done for simple SV events. In this case, the frequencies for all events except deletions with lengths of under 100kb were not different.
+
+
+
+```{r sv comparison, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/sv-boxplots2-nsc-1.jpg"
+knitr::include_graphics(img1_path)
+
+
+```
+
+
+
+
+## 1. MS Analysis
+
+|   Starting with PCAWG dataset, the relative contributions of signatures for each sample was obtained. For SBS, DBS, and INDEL signatures we used 15, 3, and 6 lung-specific reference signatures, respectively. The naming of each signature applies the following pattern: (name of most similar COSMIC reference signature).(COSMIC etiology of that signature).(percentage of cosine similarity between the most similar COSMIC signature and our de-novo extracted signature).(number of de-novo signature)
+
+
+### PCAWG Lung Cohort:
+
+Below you can see the heatmaps of relative contributions of SBS signatures followed by signature contribution break-down for each sample: 
+
+
+```{r pcawg sbs sigs, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+# 
+# img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/sbs-rel-cont-stacked-heatmap-pcawg-1.jpg"
+# knitr::include_graphics(img1_path)
+
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/sbs-rel-cont-stacked-barplot.pcawg-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+
+
+
+
+
+```
+
+
+Same plots for DBS signatures: 
+
+```{r pcawg dbs sigs, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+
+# 
+# img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/dbs-rel-cont-stacked-heatmap-pcawg-1.jpg"
+# knitr::include_graphics(img1_path)
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/dbs-rel-cont-stacked-barplot.pcawg-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+
+
+
+
+```
+
+
+Same plots for ID signatures:
+
+
+```{r pcawg id sigs, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+
+# img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/id-rel-cont-stacked-heatmap-pcawg-1.jpg"
+# knitr::include_graphics(img1_path)
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/id-rel-cont-stacked-barplot.pcawg-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+
+```
+
+
+
+Finally the relative contributions of signatures for all the three mutation types on sample levels:
+
+
+
+
+```{r pcawg comb sigs, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/combined-rel-cont-stacked-barplots.pcawg-1.jpg"
+knitr::include_graphics(img1_path)
+
+
+
+```
+
+
+
+### HMF Lung Cohort:
+
+
+
+Below you can see the heatmaps of relative contributions of SBS signatures followed by signature contribution break-down for each sample: 
+
+
+```{r hmf sbs sigs, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+# img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/sbs-rel-cont-stacked-heatmap-hmf-1.jpg"
+# knitr::include_graphics(img1_path)
+
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/sbs-rel-cont-stacked-barplot-nsc.hmf-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+
+
+
+
+
+```
+
+
+Same plots for DBS signatures: 
+
+```{r hmf dbs sigs, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+
+
+# img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/dbs-rel-cont-stacked-heatmap-hmf-1.jpg"
+# knitr::include_graphics(img1_path)
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/dbs-rel-cont-stacked-barplot-nsc.hmf-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+
+
+
+
+```
+
+
+Same plots for ID signatures:
+
+
+```{r hmf id sigs, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+
+# img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/id-rel-cont-stacked-heatmap-hmf-1.jpg"
+# knitr::include_graphics(img1_path)
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/id-rel-cont-stacked-barplot-nsc.hmf-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+
+```
+
+
+
+Finally the relative contributions of signatures for all the three mutation types on sample levels:
+
+
+
+
+```{r hmf comb sigs, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/combined-rel-cont-stacked-barplots-nsc.hmf-1.jpg"
+knitr::include_graphics(img1_path)
+
+
+
+```
+
+
+### MS Comparison between PCAWG and HMF Lung Cohorts:
+
+
+
+
+- For SBS:
+
+As shown, 4 out of 15 SBS signatures show significantly different relative contributions. Two of them are platinum induced mutations that makes sense considering that 65 out of 381 HMF lung samples were pretreated by platinum-based chemotherapy. Of note, for SBS17b.ROS_5FU.96.denovo_15 we don't see a significant difference, in line with our obsevations that none of the HMF lung samples were pretreated by 5-FU chemotherapy.
+
+```{r comb sbs sigs, echo=FALSE, out.width = '70%', message = FALSE, warning=FALSE}
+
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/sbs-comparison-relative-contribution-nsc-1.jpg"
+knitr::include_graphics(img1_path)
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/sbs-comparison-absolute-contribution-nsc-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+```
+
+
+
+- For DBS:
+
+
+The same difference for platinum mutagenesis is observed in DBS signatures as well. In addition, denovo_1 signature is significantly reduced in HMF cohort.
+
+```{r comb dbs sigs, echo=FALSE, out.width = '70%', message = FALSE, warning=FALSE}
+
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/dbs-comparison-relative-contribution-nsc-1.jpg"
+knitr::include_graphics(img1_path)
+
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/dbs-comparison-absolute-contribution-nsc-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+```
+
+
+
+
+- For ID:
+
+
+Among 4 significant ID signatures, we see the drop in relative contribution of smoking-related ID signature (denovo_3), similar to DBS comparison.
+
+```{r comb id sigs, echo=FALSE, out.width = '100%', message = FALSE, warning=FALSE}
+
+
+
+img1_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/id-comparison-relative-contribution-nsc-1.jpg"
+knitr::include_graphics(img1_path)
+
+img2_path <- "/home/ali313/Documents/studies/genomic-data-analyst/projects/lung-project/pics-synced/jpg/id-comparison-absolute-contribution-nsc-1.jpg"
+knitr::include_graphics(img2_path)
+
+
+```
