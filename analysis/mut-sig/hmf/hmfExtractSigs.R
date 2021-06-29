@@ -20,6 +20,7 @@ local <- "/home/ali313/Documents/studies/master/umc-project"
 
 
 
+
 # Reading in the sbs profiles
 
 if (dir.exists("/hpc/cuppen/")){
@@ -90,11 +91,6 @@ hmf_lung_meta_NSC <- hmf_lung_meta[hmf_lung_meta$cancer_type == "Non-Small Cell"
 
 nrow(hmf_lung_meta_NSC)
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
 # sig_cont_hmf <- list()
 # 
 # sbs_mut_context_mat_hmf <- matrix(nrow = nrow(hmf_lung_meta), ncol = nrow(sbs_sig_profile_lung))
@@ -179,11 +175,6 @@ nrow(hmf_lung_meta_NSC)
 
 
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
 if (dir.exists("/hpc/cuppen/")){
   sig_cont_hmf <- readRDS(file = "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/list-sig-cont-lung-hmf.rds")
   sbs_mut_context_mat_hmf <- readRDS(file = paste0(wd, "sbs_matrix-sig-context-hmf.rds"))
@@ -511,19 +502,11 @@ sbs_heatmap_count <- my_plot_contribution_heatmap(sbs_sig_cont_hmf_mat, sig_orde
 
 for (i in 1:2){
   if (i == 1) {
-<<<<<<< HEAD
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/sbs-rel-cont-stacked-barplot-hmf-final.png", width = 960, height = 960)
     print(sbs_stacked_bar_cont_clustering)
     dev.off()
 
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/sbs-rel-cont-stacked-heatmap-hmf-final.png", width = 660, height = 660)
-=======
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/sbs-rel-cont-stacked-barplot-nsc.hmf.png", width = 960, height = 960)
-    print(sbs_stacked_bar_cont_clustering)
-    dev.off()
-
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/sbs-rel-cont-stacked-heatmap-nsc.hmf.png", width = 660, height = 660)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(sbs_heatmap_count +
             ggtitle("Single-base Substitution Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
@@ -532,19 +515,11 @@ for (i in 1:2){
 
   }
   if (i == 2) {
-<<<<<<< HEAD
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/sbs-rel-cont-stacked-barplot-hmf-final.pdf", width = 14, height = 14)
     print(sbs_stacked_bar_cont_clustering)
     dev.off()
 
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/sbs-rel-cont-stacked-heatmap-hmf-final.pdf", width = 10, height = 10)
-=======
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/sbs-rel-cont-stacked-barplot-nsc.hmf.pdf", width = 14, height = 14)
-    print(sbs_stacked_bar_cont_clustering)
-    dev.off()
-
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/sbs-rel-cont-stacked-heatmap-nsc.hmf.pdf", width = 10, height = 10)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(sbs_heatmap_count +
             ggtitle("Single-base Substitution Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
@@ -606,19 +581,11 @@ dbs_heatmap_count <- my_plot_contribution_heatmap(dbs_sig_cont_hmf_mat, sig_orde
 
 for (i in 1:2){
   if (i == 1) {
-<<<<<<< HEAD
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/dbs-rel-cont-stacked-barplot-hmf-final.png", width = 960, height = 960)
     print(dbs_stacked_bar_cont_clustering)
     dev.off()
 
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/dbs-rel-cont-stacked-heatmap-hmf-final.png", width = 660, height = 660)
-=======
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/dbs-rel-cont-stacked-barplot-nsc.hmf.png", width = 960, height = 960)
-    print(dbs_stacked_bar_cont_clustering)
-    dev.off()
-
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/dbs-rel-cont-stacked-heatmap-nsc.hmf.png", width = 660, height = 660)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(dbs_heatmap_count +
             ggtitle("Double-base Substitution Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
@@ -627,19 +594,11 @@ for (i in 1:2){
 
   }
   if (i == 2) {
-<<<<<<< HEAD
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/dbs-rel-cont-stacked-barplot-hmf-final.pdf", width = 14, height = 14)
     print(dbs_stacked_bar_cont_clustering)
     dev.off()
 
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/dbs-rel-cont-stacked-heatmap-hmf-final.pdf", width = 10, height = 10)
-=======
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/dbs-rel-cont-stacked-barplot-nsc.hmf.pdf", width = 14, height = 14)
-    print(dbs_stacked_bar_cont_clustering)
-    dev.off()
-
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/dbs-rel-cont-stacked-heatmap-nsc.hmf.pdf", width = 10, height = 10)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(dbs_heatmap_count +
             ggtitle("Double-base Substitution Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
@@ -704,19 +663,11 @@ id_heatmap_count <- my_plot_contribution_heatmap(id_sig_cont_hmf_mat, sig_order 
 
 for (i in 1:2){
   if (i == 1) {
-<<<<<<< HEAD
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/id-rel-cont-stacked-barplot-hmf-final.png", width = 960, height = 960)
     print(id_stacked_bar_cont_clustering)
     dev.off()
 
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/id-rel-cont-stacked-heatmap-hmf-final.png", width = 660, height = 660)
-=======
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/id-rel-cont-stacked-barplot-nsc.hmf.png", width = 960, height = 960)
-    print(id_stacked_bar_cont_clustering)
-    dev.off()
-
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/id-rel-cont-stacked-heatmap-nsc.hmf.png", width = 660, height = 660)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(id_heatmap_count +
             ggtitle("Small INDEL Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
@@ -725,19 +676,11 @@ for (i in 1:2){
 
   }
   if (i == 2) {
-<<<<<<< HEAD
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/id-rel-cont-stacked-barplot-hmf-final.pdf", width = 14, height = 14)
     print(id_stacked_bar_cont_clustering)
     dev.off()
 
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/id-rel-cont-stacked-heatmap-hmf-final.pdf", width = 10, height = 10)
-=======
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/id-rel-cont-stacked-barplot-nsc.hmf.pdf", width = 14, height = 14)
-    print(id_stacked_bar_cont_clustering)
-    dev.off()
-
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/id-rel-cont-stacked-heatmap-nsc.hmf.pdf", width = 10, height = 10)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(id_heatmap_count +
             ggtitle("Small INDEL Contribution Heatmap \n \n") +
             theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
@@ -802,20 +745,12 @@ hmf_mut_sig_spectrum <- cowplot::plot_grid(sbs_stacked_bar_cont, dbs_stacked_bar
 
 for (i in 1:2){
   if (i == 1) {
-<<<<<<< HEAD
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/combined-rel-cont-stacked-barplots-hmf-final.png", width = 1440, height = 960)
-=======
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/png/combined-rel-cont-stacked-barplots-nsc.hmf.png", width = 1440, height = 960)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(hmf_mut_sig_spectrum)
     dev.off()
   }
   if (i == 2) {
-<<<<<<< HEAD
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/combined-rel-cont-stacked-barplots-hmf-final.pdf", width = 21, height = 14)
-=======
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/mut-sig/hmf/figs/pdf/combined-rel-cont-stacked-barplots-nsc.hmf.pdf", width = 21, height = 14)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(hmf_mut_sig_spectrum)
     dev.off()
   }

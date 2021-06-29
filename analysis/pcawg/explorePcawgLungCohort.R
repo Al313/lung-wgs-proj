@@ -572,11 +572,7 @@ clonality_plot_summary_pcawg <- clonality_summary_pcawg %>% ggplot(aes(x = sampl
   geom_bar(position="stack", stat="identity", width = 1) +
   scale_fill_manual(values = c("red", "black", "yellow")) +
   ggtitle("Clonality States of Different Mutation Types \n") +
-<<<<<<< HEAD
   labs(x = "PCAWG NSCLC Samples (n = 88)", y = "Frequency", fill = "Clonality") +
-=======
-  labs(x = "PCAWG Lung Samples", y = "Frequency", fill = "Clonality") +
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
   theme_bw() +
   theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5)) +
   theme(axis.ticks.x = element_blank()) + theme(axis.text.x = element_blank()) + theme(panel.grid.major.y = element_line(color = "black", size = 0.5, linetype = "dashed"))
