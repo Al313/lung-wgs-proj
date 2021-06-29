@@ -537,20 +537,12 @@ hmf_mut_dist <- cowplot::plot_grid(tmb_plot_grob, sv_plot_grob, align = "v", rel
 
 for (i in 1:2){
   if (i == 1) {
-<<<<<<< HEAD
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/mut-count-per-sample-final.png", width = 960)
-=======
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/mut-count-per-sample-nsc.png", width = 960)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(hmf_mut_dist)
     dev.off()
   }
   if (i == 2) {
-<<<<<<< HEAD
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/mut-count-per-sample-final.pdf", width = 14)
-=======
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/mut-count-per-sample-nsc.pdf", width = 14)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(hmf_mut_dist)
     dev.off()
   }
@@ -613,20 +605,12 @@ clonality_plot_summary_hmf <- clonality_summary_hmf_NSC %>% ggplot(aes(x = sampl
 
 for (i in 1:2){
   if (i == 1) {
-<<<<<<< HEAD
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/clonality-plot-summary-hmf-final.png", width = 960)
-=======
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/clonality-plot-summary-hmf-nsc.png", width = 960)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(clonality_plot_summary_hmf)
     dev.off()
   }
   if (i == 2) {
-<<<<<<< HEAD
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/clonality-plot-summary-hmf-final.pdf", width = 14)
-=======
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/clonality-plot-summary-hmf-nsc.pdf", width = 14)
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(clonality_plot_summary_hmf)
     dev.off()
   }

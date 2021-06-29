@@ -10,7 +10,6 @@ library(magrittr)
 library(dplyr)
 library(tidyr)
 
-
 if (dir.exists("/hpc/cuppen/")){
   
   base_dir <- "/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/"
@@ -37,10 +36,7 @@ if (dir.exists("/hpc/cuppen/")){
 # head(pcawg_lung_meta)
 
 pcawg_lung_meta <- pcawg_meta[pcawg_meta$organ_system == "LUNG & BRONCHUS",]
-<<<<<<< HEAD
 pcawg_lung_meta <- pcawg_lung_meta[pcawg_lung_meta$icgc_donor_id != "DO23717",]
-=======
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
 
 
 
@@ -74,22 +70,12 @@ if (dir.exists("/hpc/cuppen/")){
   clonality_summary_pcawg <- readRDS(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/clonality_summary_pcawg.rds")
 }
 
-<<<<<<< HEAD
-=======
-
-clonality_summary_pcawg$Tot <- rowSums(clonality_summary_pcawg[,3:5], na.rm = T)
-clonality_summary_pcawg %<>% gather(key = "Clonality_stat", value = "Counts", 3:5)
-clonality_summary_pcawg$Mut_type <- factor(clonality_summary_pcawg$Mut_type, levels = c("All", "SNVs", "MNVs", "Ins", "Del"))
-clonality_summary_pcawg$Clonality_stat <- factor(clonality_summary_pcawg$Clonality_stat, levels = c("Clonal", "Non_clonal", "Unknown"))
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
 
 clonality_summary_pcawg$Tot <- rowSums(clonality_summary_pcawg[,3:5], na.rm = T)
 clonality_summary_pcawg %<>% gather(key = "Clonality_stat", value = "Counts", 3:5)
 clonality_summary_pcawg$Mut_type <- factor(clonality_summary_pcawg$Mut_type, levels = c("All", "SNVs", "MNVs", "Ins", "Del"))
 clonality_summary_pcawg$Clonality_stat <- factor(clonality_summary_pcawg$Clonality_stat, levels = c("Clonal", "Non_clonal", "Unknown"))
 
-
-# Ploidy info
 
 # Ploidy info
 
@@ -632,7 +618,6 @@ sv_count_df_combined$Dataset <- factor(sv_count_df_combined$Dataset, levels = c(
 sv_count_df_combined <- sv_count_df_combined[sv_count_df_combined$Counts != 0,]
 
 
-<<<<<<< HEAD
 stat.test <- sv_count_df_combined %>%
   group_by(Simple_SV_Event) %>%
   wilcox_test(Counts ~ Dataset) %>%
@@ -650,9 +635,6 @@ stat.test$xmax <- c(1.15,2.15,3.15,4.15,5.15)
 
 
 sv_plot <- sv_count_df_combined %>% ggplot(aes(x = Simple_SV_Event, y = log2(Counts), color = Dataset)) +
-=======
-sv_plot <- sv_count_df_combined %>% ggplot(aes(x = Simple_SV_Event, y = log2(Counts), fill = Dataset)) +
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
   geom_boxplot(outlier.shape = NA) +
   # stat_compare_means(method = "t.test") +
   # geom_text(data=data.frame(), aes(x=names(meds_ins), y=meds_ins, 
@@ -661,10 +643,7 @@ sv_plot <- sv_count_df_combined %>% ggplot(aes(x = Simple_SV_Event, y = log2(Cou
   # geom_jitter(color="black", size=0.4, alpha=0.5) +
   geom_point(position=position_jitterdodge(), size = 0.4, aes(color = Dataset), alpha = 0.5) +
   scale_color_manual(values = c("#ff0101", "#010dff"), guide = "none") +
-<<<<<<< HEAD
   stat_pvalue_manual(stat.test,  label = "p.adj.signif", tip.length = 0, hide.ns = F) +
-=======
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
   theme_bw() +
   ggtitle("SV Event Frequency Comparison \n") +
   ylab("Frequency of Events (log2) \n") +
@@ -675,11 +654,7 @@ sv_plot <- sv_count_df_combined %>% ggplot(aes(x = Simple_SV_Event, y = log2(Cou
   theme(axis.title.y = element_text(face = "italic", size = 12)) +
   labs(fill = "Cancer Type") +
   theme(axis.text.x = element_text(angle = 45, size = 5, vjust = 0.6, face = "bold")) +
-<<<<<<< HEAD
   theme(plot.margin = unit(c(1,1,1,1), "cm")) 
-=======
-  theme(plot.margin = unit(c(1,1,1,1), "cm"))
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
 
 sv_plot
 
@@ -688,27 +663,17 @@ sv_plot
 
 for (i in 1:2){
   if (i == 1) {
-<<<<<<< HEAD
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/comparison/figs/png/sv-boxplots-final.png")
-=======
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/comparison/figs/png/sv-boxplots.png")
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(sv_plot)
     dev.off()
   }
   if (i == 2) {
-<<<<<<< HEAD
     pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/comparison/figs/pdf/sv-boxplots-final.pdf")
-=======
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/comparison/figs/pdf/sv-boxplots.pdf")
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
     print(sv_plot)
     dev.off()
   }
 }
 
-
-<<<<<<< HEAD
 
 
 ##### 
@@ -857,9 +822,6 @@ clonality_summary_hmf_all <- clonality_summary_hmf_all[clonality_summary_hmf_all
 
 clonality_summary_hmf_all$Dataset <- "HMF"
 
-=======
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
-
 
 ##### 
 # Job theme
@@ -868,7 +830,6 @@ sv_count_df_combined %<>% group_by("Simple_SV_Event") %>%
   mutate(median = round(median(Counts, na.rm = T), digits = 1)) %>%
   ungroup
 
-<<<<<<< HEAD
 stat.test <- combined_clonality %>%
   t_test(Clona2Nonclonal ~ Dataset) %>%
   adjust_pvalue(method = "bonferroni") %>%
@@ -897,8 +858,7 @@ clonality_plot <-ggplot(combined_clonality, aes(x = Dataset, y = Clona2Nonclonal
   labs(x = "\n Datasets", y = "Clonal/Non-clonal Ratio \n", color = "Datasets") +
   geom_hline(yintercept=c(50, 100, 150), linetype="dashed", 
              color = "grey", size=0.5)
-=======
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
+
 
 sv_plot_job <- ggplot(data = sv_count_df_combined, aes(x = Dataset, y = log2(Counts), color = Dataset, fill = Dataset)) + facet_wrap(~ Simple_SV_Event) +
   gghalves::geom_half_boxplot(side = 'l', outlier.shape = NA, color = 'black') +
@@ -932,14 +892,9 @@ for (i in 1:2){
 }
 
 
-<<<<<<< HEAD
-=======
-############################################################################################################################################
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
 
 # clonality
 
-<<<<<<< HEAD
 #### job
 
 
@@ -965,19 +920,31 @@ clonality_plot_job <- ggplot(data = combined_clonality, aes(x = Dataset, y = Clo
 # theme(plot.margin = unit(c(1,1,1,1), "cm"))
 # geom_text(data=data.frame(), aes(x=names(meds_mnv), y=meds_mnv,
 #                                  label= c(paste0("Mean = ", pcawg_mnv_mean), paste0("Mean = ", hmf_mnv_mean))), col = "red", size=4) +
-=======
-clonality_summary_pcawg <- clonality_summary_pcawg[clonality_summary_pcawg$Mut_type == "All" & !is.na(clonality_summary_pcawg$Counts),]
-nrow(clonality_summary_pcawg)/3
-clonality_summary_hmf_NSC
 
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
 
+sv_plot_job <- ggplot(data = sv_count_df_combined, aes(x = Dataset, y = log2(Counts), color = Dataset, fill = Dataset)) + facet_wrap(~ Simple_SV_Event) +
+  gghalves::geom_half_boxplot(side = 'l', outlier.shape = NA, color = 'black') +
+  gghalves::geom_half_point_panel(side = 'r', color = 'black', shape = 21, transformation = ggbeeswarm::position_quasirandom(width = .1, groupOnX = T)) +
+  ggplot2::scale_color_manual(values = c('#e75480', 'darkblue'), guide = "none") +
+  ggplot2::scale_fill_manual(values = c('#e75480', 'darkblue'), guide = "none") +
+  # ggplot2::scale_y_continuous(limits = c(20, 90), breaks = seq(0, 90, by = 10)) +
+  ggplot2::ggtitle("Numbers of Somatic Insertions \n") +
+  ggplot2::labs(x = '\n\n Cohorts', y = 'Number of small insertions (log2)\n\n') +
+  theme_Job +
+  # stat_compare_means(comparisons = my_comparisons, method = "wilcox.test") +
+  theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5))
+# theme(axis.title.x = element_text(face = "italic", size = 12))
+# theme(axis.title.y = element_text(face = "italic", size = 12))
+# theme(plot.margin = unit(c(1,1,1,1), "cm"))
+# geom_text(data=data.frame(), aes(x=names(meds_mnv), y=meds_mnv,
+#                                  label= c(paste0("Mean = ", pcawg_mnv_mean), paste0("Mean = ", hmf_mnv_mean))), col = "red", size=4) +
 
 boxplot(clonality_summary_pcawg$Clonal[clonality_summary_pcawg$Mut_type == "All"], clonality_summary_hmf_NSC$Clonal[clonality_summary_hmf_NSC$Mut_type == "All"])
 
-<<<<<<< HEAD
+
 for (i in 1:2){
   if (i == 1) {
+
     png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/comparison/figs/png/clonality-plot-final.png")
     print(clonality_plot_job)
     dev.off()
@@ -988,16 +955,13 @@ for (i in 1:2){
     dev.off()
   }
 }
-=======
-############################################################################################################################################
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
+
 
 # ploidy
 
-<<<<<<< HEAD
-######################################################################################################################################################
-# Ploidy
 
+
+# clonality
 
 summary(pcawg_ploidy_df$ploidy)
 summary(hmf_ploidy_df_NSC$ploidy)
@@ -1048,9 +1012,4 @@ for (i in 1:2){
     dev.off()
   }
 }
-=======
 
-
-
-
->>>>>>> d4b2ba7d869eab81f62853d96bcbc0ac881b0e01
