@@ -516,12 +516,12 @@ pcawg_mut_dist <- cowplot::plot_grid(tmb_plot_grob, sv_plot_grob, align = "v", r
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/png/mut-count-per-sample-final.png")
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/png/mut-count-per-sample-pcawg-final.png")
     print(pcawg_mut_dist)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/pdf/mut-count-per-sample-final.pdf")
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/pcawg/figs/pdf/mut-count-per-sample-pcawg-final.pdf")
     print(pcawg_mut_dist)
     dev.off()
   }

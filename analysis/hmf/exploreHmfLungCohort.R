@@ -537,12 +537,12 @@ hmf_mut_dist <- cowplot::plot_grid(tmb_plot_grob, sv_plot_grob, align = "v", rel
 
 for (i in 1:2){
   if (i == 1) {
-    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/mut-count-per-sample-final.png", width = 960)
+    png(filename = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/png/mut-count-per-sample-hmf-final.png", width = 960)
     print(hmf_mut_dist)
     dev.off()
   }
   if (i == 2) {
-    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/mut-count-per-sample-final.pdf", width = 14)
+    pdf(file = "/home/ali313/Documents/studies/master/umc-project/hpc/cuppen/projects/P0013_WGS_patterns_Diagn/misc/processed/ali-lung-proj/analysis/hmf/figs/pdf/mut-count-per-sample-hmf-final.pdf", width = 14)
     print(hmf_mut_dist)
     dev.off()
   }
